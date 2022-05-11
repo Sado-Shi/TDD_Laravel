@@ -13,9 +13,11 @@ COPY --from=node:10.22 /usr/local/lib /usr/local/lib
 RUN apt-get update && \
   apt-get -y install \
   git \
+  zlib1g-dev \
+  libzip-dev \
   zip \
   unzip \
   vim \
-  && docker-php-ext-install pdo_mysql bcmath
+  && docker-php-ext-install pdo_mysql bcmath zip
 
 WORKDIR /var/www/html
