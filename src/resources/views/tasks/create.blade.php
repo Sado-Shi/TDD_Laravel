@@ -18,17 +18,26 @@
 
 <body>
     <div class="container">
-        <h2>Tasks List</h2>
-        <div class="col-md-2">
-            {{ link_to_action('TaskController@create', '新規追加', [], ['class' => 'btn btn-primary btn-block']) }}
+        <h2>New Task</h2>
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                {!! Form::open(['action' => ['TaskController@create'], 'method' => 'post']) !!}
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <td>タイトル</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ Form::text('title', '', ['id' => 'title', 'class' => 'form-control']) }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                {{ Form::submit('登録', ['class' => 'btn btn-primary']) }}
+                {!! Form::close() !!}
+            </div>
         </div>
-        <ul>
-            @foreach ($tasks as $task)
-                <li><a href="/tasks/{{ $task->id }}">{{ $task->title }}</a>
-                    <input type="checkbox" name="checkbox_{{ $task->id }}" {!! $task->executed ? 'checked="checked"' : '' !!}>
-                </li>
-            @endforeach
-        </ul>
     </div>
 </body>
 

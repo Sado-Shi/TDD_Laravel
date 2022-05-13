@@ -18,3 +18,8 @@ Route::get('/', function () {
 });
 
 Route::get('/tasks', 'TaskController@index');
+Route::get('/tasks/{id}', 'TaskController@show')->where('id', '[0-9]+');
+Route::put('/tasks/{id}', 'TaskController@update')->where('id', '[0-9]+');
+Route::get('/tasks/create', 'TaskController@create');
+Route::post('/tasks', 'TaskController@store');
+Route::delete('/tasks/{id}', 'TaskController@destroy')->where('id', '[0-9]+');
